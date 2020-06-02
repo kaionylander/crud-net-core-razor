@@ -1,0 +1,55 @@
+﻿@page
+@model CrudNetCoreRazor.Pages.ListaCursos.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container row">
+    <div class="col-6">
+        <h2 class="text-info">Lista de Cursos</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-page="Create" class="btn btn-primary">Criar Novo Curso</a>
+    </div>
+</div>
+
+@if(Model.Mensagem != null) {
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Mensagem
+    </div>
+}
+
+<form method="post">
+    @if (Model.Cursos.Count() > 0)
+    {
+        <br /><br />
+        <table class="table table-striped border">
+            <tr class="table-secondary">
+                <th>Nome</th>
+                <th>Quantidade de Classes</th>
+                <th>Preço</th>
+                <th>Ações
+                </th>
+            </tr>
+            @foreach (var item in Model.Cursos)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => item.Nome)</td>
+                    <td>@Html.DisplayFor(m => item.QuantidadeClasses)</td>
+                    <td>@Html.DisplayFor(m => item.Preco)</td>
+                    <td>
+                        <button asp-page-handler="Delete" asp-route-id="@item.Id" onclick="return confirm('Tem certeza que deseja apagar registro?')" class="btn btn-danger btn-sm">Excluir</button>
+                        <a asp-route-id="@item.Id" asp-page="Edit" class="btn btn-success btn-sm">Editar</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>Não há cursos disponíveis.</p>
+    }
+</form>

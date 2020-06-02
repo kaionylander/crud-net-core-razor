@@ -1,0 +1,68 @@
+﻿@page
+@model CrudNetCoreRazor.Pages.ListaCursos.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2 class="text-info">Editar Curso</h2>
+<br />
+
+<div class="border">
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Curso.Id" />
+        <div class="container" style="padding:30px">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label asp-for="Curso.Nome"></label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input asp-for="Curso.Nome" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Curso.Nome" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label asp-for="Curso.QuantidadeClasses"></label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input asp-for="Curso.QuantidadeClasses" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Curso.QuantidadeClasses" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label asp-for="Curso.Preco"></label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input asp-for="Curso.Preco" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Curso.Preco" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-2 offset-sm-2">
+                        <input type="submit" value="Atualizar" class="btn-primary form-control" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a asp-page="Index" class="btn btn-success form-control">Voltar a Lista</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+@section Scripts{ 
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
